@@ -5,7 +5,14 @@ const Post = require("../models/Post");
 //get data from server
 routers.get("/", async (req, res) => {
   try {
-    const posts = await Post.find();
+    console.log(req.query.id);
+    var posts = null;
+    if (req?.query?.id) {
+      posts = await Post.findById(req?.query?.id);
+    } else {
+      posts = await Post.find();
+    }
+
     res.json(posts);
   } catch (error) {
     res.json({ message: error });
@@ -27,7 +34,8 @@ routers.post("/my", async (req, res) => {
 });
 
 //find data
-routers.get("/:postId", async (req, res) => {
+routers.get("/", async (req, res) => {
+  console.log(req);
   const finded = await Post.findById(req.params.postId);
   res.json(finded);
   res.end();
