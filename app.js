@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 const routers = require("./routers/routers");
+const cors = require('cors');
 
 
 
@@ -14,6 +15,8 @@ require("dotenv/config");
 //middle ware
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors({origin:true,credentials:true}));
+
 app.use(express.urlencoded({ extended: false }));
 
 

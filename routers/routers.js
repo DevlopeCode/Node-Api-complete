@@ -35,7 +35,7 @@ routers.post("/my", async (req, res) => {
 
 //find data
 routers.get("/", async (req, res) => {
-  console.log(req);
+
   const finded = await Post.findById(req.params.postId);
   res.json(finded);
   res.end();
